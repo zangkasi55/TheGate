@@ -32,9 +32,41 @@
             <div class="yt-avatar pink-princess">👸</div>
             <div class="yt-profile-name">Kids Mode</div>
           </button>
-          <div class="yt-profile-card yt-profile-card--locked" onclick="alert('Dashboard is at ' + window.location.origin + '/dashboard.html')">
+          <button class="yt-profile-card yt-profile-card--locked" id="btn-parent-settings" type="button">
             <div class="yt-avatar parent-avatar">🔒</div>
-            <div class="yt-profile-name">Parents</div>
+            <div class="yt-profile-name">Parent Settings</div>
+          </button>
+        </div>
+
+        <div class="parent-config-panel" id="parent-config-panel" hidden>
+          <h2>Parent Settings</h2>
+          <p class="parent-config-help">Enter passcode to update local settings on this device.</p>
+
+          <div class="parent-config-row">
+            <label for="parent-passcode-input">Passcode</label>
+            <input id="parent-passcode-input" type="password" inputmode="numeric" maxlength="12" autocomplete="off" />
+          </div>
+
+          <div class="parent-config-row parent-config-row--settings" id="parent-settings-fields" hidden>
+            <label for="cfg-time-limit">Time Limit (minutes)</label>
+            <input id="cfg-time-limit" type="number" min="1" max="120" step="1" />
+
+            <label for="cfg-total-questions">Questions To Answer</label>
+            <input id="cfg-total-questions" type="number" min="1" max="20" step="1" />
+
+            <label for="cfg-required-correct">Correct Needed To Unlock</label>
+            <input id="cfg-required-correct" type="number" min="1" max="20" step="1" />
+
+            <label for="cfg-new-passcode">New Passcode (optional)</label>
+            <input id="cfg-new-passcode" type="password" inputmode="numeric" maxlength="12" autocomplete="off" />
+          </div>
+
+          <p class="parent-config-status" id="parent-config-status" aria-live="polite"></p>
+
+          <div class="parent-config-actions">
+            <button type="button" class="mode-chip" id="btn-parent-unlock">Unlock</button>
+            <button type="button" class="mode-chip" id="btn-parent-save" hidden>Save</button>
+            <button type="button" class="mode-chip" id="btn-parent-close">Close</button>
           </div>
         </div>
         

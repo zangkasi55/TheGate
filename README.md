@@ -63,6 +63,7 @@ the video and overlays the gate again.
 | [docs/API.md](docs/API.md)                         | REST contract for `/api/config` and `/api/vocabulary`.                     |
 | [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)           | LAN / NAS deployment recipes (Synology Task Scheduler, systemd, Docker).   |
 | [docs/SECURITY.md](docs/SECURITY.md)               | Threat model, privacy stance (no cloud STT, no telemetry).                 |
+| [docs/STANDALONE-APK.md](docs/STANDALONE-APK.md)   | Standalone APK mode with on-login parent passcode settings and local config. |
 | [app/README.md](app/README.md)                     | Web app dev guide.                                                          |
 | [android/README.md](android/README.md)             | Android TV build & install guide.                                          |
 
@@ -72,7 +73,7 @@ the video and overlays the gate again.
 | -------------------- | --------------- | ------------------------------------------------------- |
 | Gate web app         | Working         | Web Speech API + ~115 vocabulary cards.                 |
 | Parent dashboard     | Working         | Live config + vocabulary CRUD via REST.                 |
-| Android TV wrapper   | Working         | Pause-and-overlay resume model. Version 1.0.4.          |
+| Android TV wrapper   | Working         | Pause-and-overlay resume model. Version 1.1.0 (standalone-ready). |
 | Native speech bridge | Working         | Uses Android `SpeechRecognizer` (Google on-device).     |
 | HTTPS / WAN          | Not configured  | Designed for trusted LAN. See `docs/SECURITY.md`.       |
 

@@ -5,21 +5,20 @@
   'use strict';
 
   // ---------- Configuration ----------
-  const defaultApiBase = window.location.protocol === 'file:'
-    ? 'http://127.0.0.1:5501/api'
-    : `${window.location.origin}/api`;
-
   let CONFIG = {
-    TOTAL_ROUNDS: 3,        // words required to unlock YouTube
+    TOTAL_ROUNDS: 3,        // questions to answer
+    REQUIRED_CORRECT: 3,    // minimum correct to unlock
     MAX_RETRIES: 2,         // attempts per word before moving on (kindly)
     YOUTUBE_URL: 'https://www.youtube.com/tv',
     YOUTUBE_PLAY_LIMIT_MS: 10 * 60 * 1000, // 10 minutes play duration (600,000 ms)
     CORRECT_HOLD_MS: 1300,  // how long the "Great job!" overlay shows
     WRONG_HOLD_MS: 1300,
-    LISTEN_TIMEOUT_MS: 6000, // auto-stop recognition if nothing happens
-    API_BASE: defaultApiBase,
-    API_FALLBACK_BASE: 'http://127.0.0.1:5501/api'
+    LISTEN_TIMEOUT_MS: 6000 // auto-stop recognition if nothing happens
   };
+
+  const CONFIG_STORAGE_KEY = 'thegate.offline.config.v1';
+  const PASSCODE_STORAGE_KEY = 'thegate.parent.passcode.v1';
+  const DEFAULT_PARENT_PASSCODE = '1234';
 
   // ---------- DOM ----------
   const screens = {
@@ -46,6 +45,18 @@
     btnModeWord:  document.getElementById('btn-mode-word'),
     btnModeAdd:   document.getElementById('btn-mode-add'),
     btnModeSub:   document.getElementById('btn-mode-subtract'),
+    btnParentSettings: document.getElementById('btn-parent-settings'),
+    parentPanel: document.getElementById('parent-config-panel'),
+    parentSettingsFields: document.getElementById('parent-settings-fields'),
+    parentPasscodeInput: document.getElementById('parent-passcode-input'),
+    cfgTimeLimit: document.getElementById('cfg-time-limit'),
+    cfgTotalQuestions: document.getElementById('cfg-total-questions'),
+    cfgRequiredCorrect: document.getElementById('cfg-required-correct'),
+    cfgNewPasscode: document.getElementById('cfg-new-passcode'),
+    parentStatus: document.getElementById('parent-config-status'),
+    btnParentUnlock: document.getElementById('btn-parent-unlock'),
+    btnParentSave: document.getElementById('btn-parent-save'),
+    btnParentClose: document.getElementById('btn-parent-close'),
     btnSpeak:     document.getElementById('btn-speak'),
     btnSkip:      document.getElementById('btn-skip'),
     btnYoutube:   document.getElementById('btn-youtube'),
@@ -259,54 +270,59 @@
   }
 
   // ---------- Game flow ----------
-  async function fetchFromApi(pathname) {
-    const bases = [CONFIG.API_BASE, CONFIG.API_FALLBACK_BASE]
-      .filter(Boolean)
-      .filter((base, index, arr) => arr.indexOf(base) === index);
+  function loadLocalConfig() {
+    try {
+      const raw = localStorage.getItem(CONFIG_STORAGE_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      const totalRounds = Number(parsed.TOTAL_ROUNDS);
+      const requiredCorrect = Number(parsed.REQUIRED_CORRECT);
+      const playLimitMs = Number(parsed.YOUTUBE_PLAY_LIMIT_MS);
 
-    let lastError = null;
-    for (const base of bases) {
-      try {
-        const res = await fetch(`${base}${pathname}`, { cache: 'no-store' });
-        if (res.ok) return res.json();
-      } catch (e) {
-        lastError = e;
+      if (Number.isInteger(totalRounds) && totalRounds >= 1 && totalRounds <= 20) {
+        CONFIG.TOTAL_ROUNDS = totalRounds;
       }
+      if (Number.isInteger(requiredCorrect) && requiredCorrect >= 1 && requiredCorrect <= 20) {
+        CONFIG.REQUIRED_CORRECT = requiredCorrect;
+      }
+      if (Number.isFinite(playLimitMs) && playLimitMs >= 60_000 && playLimitMs <= 7_200_000) {
+        CONFIG.YOUTUBE_PLAY_LIMIT_MS = playLimitMs;
+      }
+    } catch (e) {
+      console.warn('Invalid local config. Using defaults.', e);
     }
-    throw lastError || new Error(`No API response for ${pathname}`);
+    CONFIG.REQUIRED_CORRECT = Math.min(CONFIG.REQUIRED_CORRECT, CONFIG.TOTAL_ROUNDS);
   }
 
-  async function syncFromBackend() {
-    try {
-      // 1. Fetch dynamic play parameters
-      const remoteConfig = await fetchFromApi('/config');
-      Object.assign(CONFIG, remoteConfig);
-      
-      // 2. Fetch master high-quality curated vocabulary database
-      const remoteVocab = await fetchFromApi('/vocabulary');
-      if (remoteVocab && remoteVocab.length > 0) {
-        window.VOCABULARY = remoteVocab;
-      }
+  function saveLocalConfig() {
+    const payload = {
+      TOTAL_ROUNDS: CONFIG.TOTAL_ROUNDS,
+      REQUIRED_CORRECT: CONFIG.REQUIRED_CORRECT,
+      YOUTUBE_PLAY_LIMIT_MS: CONFIG.YOUTUBE_PLAY_LIMIT_MS
+    };
+    localStorage.setItem(CONFIG_STORAGE_KEY, JSON.stringify(payload));
+  }
 
-      // 3. Fetch optional math banks for v2 mode
-      const addSet = await fetchFromApi('/math?mode=addition');
-      const subSet = await fetchFromApi('/math?mode=subtraction');
-      state.mathLibrary.addition = Array.isArray(addSet) ? addSet : [];
-      state.mathLibrary.subtraction = Array.isArray(subSet) ? subSet : [];
-    } catch (e) {
-      console.warn('Backend server offline. Relying on local fallbacks.', e);
-    }
+  function getParentPasscode() {
+    return localStorage.getItem(PASSCODE_STORAGE_KEY) || DEFAULT_PARENT_PASSCODE;
+  }
 
+  function setParentPasscode(nextPasscode) {
+    localStorage.setItem(PASSCODE_STORAGE_KEY, String(nextPasscode || DEFAULT_PARENT_PASSCODE));
+  }
+
+  function ensureMathLibraries() {
     if (!state.mathLibrary.addition.length) {
-      state.mathLibrary.addition = fallbackMathQuestions('addition', CONFIG.TOTAL_ROUNDS + 3);
+      state.mathLibrary.addition = fallbackMathQuestions('addition', CONFIG.TOTAL_ROUNDS + 6);
     }
     if (!state.mathLibrary.subtraction.length) {
-      state.mathLibrary.subtraction = fallbackMathQuestions('subtraction', CONFIG.TOTAL_ROUNDS + 3);
+      state.mathLibrary.subtraction = fallbackMathQuestions('subtraction', CONFIG.TOTAL_ROUNDS + 6);
     }
   }
 
-  async function start(mode = 'vocabulary') {
-    await syncFromBackend();
+  function start(mode = 'vocabulary') {
+    loadLocalConfig();
+    ensureMathLibraries();
     state.mode = mode;
     if (mode === 'addition' || mode === 'subtraction') {
       state.queue = pickRandom(state.mathLibrary[mode], CONFIG.TOTAL_ROUNDS);
@@ -518,8 +534,16 @@
   function finish() {
     els.finalScore.textContent = String(state.score);
     els.finalTotal.textContent = String(CONFIG.TOTAL_ROUNDS);
+    const unlockReady = state.score >= CONFIG.REQUIRED_CORRECT;
+    els.btnYoutube.disabled = !unlockReady;
+    const label = els.btnYoutube.querySelector('.big-button__label');
+    if (label) {
+      label.textContent = unlockReady
+        ? `Watch YouTube (${Math.round(CONFIG.YOUTUBE_PLAY_LIMIT_MS / 60000)} Mins)`
+        : `Need ${CONFIG.REQUIRED_CORRECT}/${CONFIG.TOTAL_ROUNDS} to unlock`;
+    }
     showScreen('done');
-    els.btnYoutube.focus();
+    (unlockReady ? els.btnYoutube : els.btnRestart).focus();
   }
 
   function getEmbedUrl(urlOrId) {
@@ -593,6 +617,7 @@
    * Counts down from 10 minutes, then yanks user back to the splash screen.
    */
   function startYouTubeSession() {
+    if (state.score < CONFIG.REQUIRED_CORRECT) return;
     showScreen('youtube');
     
     // Dynamically build clean child-safe embed URL from parental config
@@ -680,11 +705,83 @@
     els.btnSpeak.focus();
   }
 
+  function openParentPanel() {
+    els.parentPanel.hidden = false;
+    els.parentSettingsFields.hidden = true;
+    els.btnParentSave.hidden = true;
+    els.parentPasscodeInput.value = '';
+    els.cfgNewPasscode.value = '';
+    els.parentStatus.textContent = '';
+    els.parentPasscodeInput.focus();
+  }
+
+  function closeParentPanel() {
+    els.parentPanel.hidden = true;
+    els.btnParentSettings.focus();
+  }
+
+  function unlockParentSettings() {
+    const entered = String(els.parentPasscodeInput.value || '').trim();
+    if (!entered) {
+      els.parentStatus.textContent = 'Please enter passcode.';
+      return;
+    }
+    if (entered !== getParentPasscode()) {
+      els.parentStatus.textContent = 'Wrong passcode.';
+      return;
+    }
+
+    loadLocalConfig();
+    els.cfgTimeLimit.value = String(Math.max(1, Math.round(CONFIG.YOUTUBE_PLAY_LIMIT_MS / 60000)));
+    els.cfgTotalQuestions.value = String(CONFIG.TOTAL_ROUNDS);
+    els.cfgRequiredCorrect.value = String(CONFIG.REQUIRED_CORRECT);
+    els.parentSettingsFields.hidden = false;
+    els.btnParentSave.hidden = false;
+    els.parentStatus.textContent = 'Unlocked. Update settings and press Save.';
+    els.cfgTimeLimit.focus();
+  }
+
+  function saveParentSettings() {
+    const minutes = Number(els.cfgTimeLimit.value);
+    const total = Number(els.cfgTotalQuestions.value);
+    const required = Number(els.cfgRequiredCorrect.value);
+
+    if (!Number.isInteger(minutes) || minutes < 1 || minutes > 120) {
+      els.parentStatus.textContent = 'Time limit must be 1-120 minutes.';
+      return;
+    }
+    if (!Number.isInteger(total) || total < 1 || total > 20) {
+      els.parentStatus.textContent = 'Questions to answer must be 1-20.';
+      return;
+    }
+    if (!Number.isInteger(required) || required < 1 || required > total) {
+      els.parentStatus.textContent = 'Correct needed must be between 1 and total questions.';
+      return;
+    }
+
+    CONFIG.TOTAL_ROUNDS = total;
+    CONFIG.REQUIRED_CORRECT = required;
+    CONFIG.YOUTUBE_PLAY_LIMIT_MS = minutes * 60 * 1000;
+    saveLocalConfig();
+
+    const nextPasscode = String(els.cfgNewPasscode.value || '').trim();
+    if (nextPasscode) {
+      setParentPasscode(nextPasscode);
+      els.cfgNewPasscode.value = '';
+    }
+
+    els.parentStatus.textContent = 'Saved on this device.';
+  }
+
   // ---------- Event wiring ----------
   els.btnStart.addEventListener('click', () => start('vocabulary'));
   els.btnModeWord.addEventListener('click', () => start('vocabulary'));
   els.btnModeAdd.addEventListener('click', () => start('addition'));
   els.btnModeSub.addEventListener('click', () => start('subtraction'));
+  els.btnParentSettings.addEventListener('click', openParentPanel);
+  els.btnParentUnlock.addEventListener('click', unlockParentSettings);
+  els.btnParentSave.addEventListener('click', saveParentSettings);
+  els.btnParentClose.addEventListener('click', closeParentPanel);
   els.btnSpeak.addEventListener('click', listen);
   els.btnSkip.addEventListener('click', skipCard);
   els.btnYoutube.addEventListener('click', startYouTubeSession);
@@ -707,13 +804,18 @@
     // Let focused buttons handle their own activation.
     if (active && active.tagName === 'BUTTON') return;
     e.preventDefault();
-    if (screens.splash.classList.contains('active')) start('vocabulary');
+    if (screens.splash.classList.contains('active') && els.parentPanel.hidden) start('vocabulary');
     else if (screens.card.classList.contains('active') && state.mode === 'vocabulary') listen();
     else if (screens.done.classList.contains('active')) els.btnYoutube.click();
     else if (screens.youtube.classList.contains('active')) endYouTubeSession();
   });
 
   // Boot
+  if (!localStorage.getItem(PASSCODE_STORAGE_KEY)) {
+    setParentPasscode(DEFAULT_PARENT_PASSCODE);
+  }
+  loadLocalConfig();
+  saveLocalConfig();
   showScreen('splash');
   els.btnStart.focus();
 })();

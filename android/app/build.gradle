@@ -2,6 +2,15 @@ plugins {
     id 'com.android.application'
 }
 
+def gateWebSourceDir = file("${rootDir}/../app")
+def generatedGateAssetsDir = file("${buildDir}/generated/gate-assets")
+
+tasks.register('copyGateWebAssets', Copy) {
+    from(gateWebSourceDir)
+    into(generatedGateAssetsDir)
+    include 'index.html', 'app.js', 'styles.css', 'vocabulary.js'
+}
+
 android {
     namespace 'com.thegate.tv'
     compileSdk 35
@@ -10,16 +19,23 @@ android {
         applicationId 'com.thegate.tv'
         minSdk 23
         targetSdk 35
-        versionCode 5
-        versionName '1.0.4'
+        versionCode 6
+        versionName '1.1.0'
 
-        // GATE_URL is injected from gradle.properties so each operator can
-        // point the APK at their own LAN host without editing source files.
-        def gateUrl = project.findProperty('GATE_URL') ?: 'http://192.0.2.10:5501/'
+        // Default to packaged offline web app for standalone APK mode.
+        def gateUrl = project.findProperty('GATE_URL') ?: 'file:///android_asset/index.html'
         buildConfigField "String", "GATE_URL", "\"${gateUrl}\""
     }
 
     buildFeatures {
         buildConfig true
     }
+
+    sourceSets {
+        main {
+            assets.srcDir generatedGateAssetsDir
+        }
+    }
 }
+
+preBuild.dependsOn(tasks.named('copyGateWebAssets'))

@@ -5,8 +5,15 @@ it own the screen as if it were a native launcher.
 
 ## Configure
 
-Edit [`gradle.properties`](./gradle.properties) and point the build at the
-host that serves the web app:
+Standalone APK mode is now the default. The web app is packaged inside the APK
+and loaded from:
+
+```properties
+GATE_URL=file:///android_asset/index.html
+```
+
+You can still point the wrapper at a hosted web app by editing
+[`gradle.properties`](./gradle.properties):
 
 ```properties
 GATE_URL=http://<your-host-ip>:5501/
@@ -14,8 +21,7 @@ GATE_URL=http://<your-host-ip>:5501/
 
 `<your-host-ip>` is the LAN address of the machine running `node server.js`
 from the [`app/`](../app) folder (a NAS, a Raspberry Pi, or any always-on
-host). The example IP `192.0.2.10` is RFC 5737 documentation space — replace
-it with your own.
+host).
 
 The source contains no hard-coded host addresses; the value is injected
 into `BuildConfig.GATE_URL` at compile time.
@@ -85,6 +91,18 @@ The native bridge surfaces two objects to the web app:
 
 The web app gracefully falls back to the browser Web Speech API and an
 iframe player when those bridges are absent.
+
+## Parent settings in standalone mode
+
+On the splash/login page, `Parent Settings` is protected by passcode.
+
+- Default passcode: `1234`
+- Configurable in-app:
+   - Time limit (minutes)
+   - Questions to answer
+   - Correct needed to unlock
+
+Settings are stored locally on device (no backend required).
 
 ## Permissions
 
