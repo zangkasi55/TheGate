@@ -38,6 +38,18 @@ The unsigned debug APK is written to:
 app\build\outputs\apk\debug\app-debug.apk
 ```
 
+Standalone distribution filename:
+
+```text
+app\build\outputs\apk\debug\TheGate_SAL.apk
+```
+
+Generate it after build:
+
+```powershell
+Copy-Item -Force .\app\build\outputs\apk\debug\app-debug.apk .\app\build\outputs\apk\debug\TheGate_SAL.apk
+```
+
 On first run, `build-apk.ps1` bootstraps a portable JDK 17, Gradle 8.10.2
 and Android SDK build-tools 35.0.0 under
 `%LOCALAPPDATA%\TheGateAndroidTools` so the host machine does not need
@@ -68,7 +80,7 @@ Android Studio.
    .\install-to-tv.ps1 -PairAddress <tv-ip>:<pair-port> -TvIp <tv-ip>
    ```
 
-If the TV does not expose network debugging, host the resulting APK on the
+If the TV does not expose network debugging, host `TheGate_SAL.apk` on the
 web server (drop the file into the `app/` folder) and download it through
 the TV browser. Launcher label: `YT`. Package: `com.thegate.tv`.
 

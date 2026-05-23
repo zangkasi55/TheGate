@@ -1,26 +1,42 @@
-# Standalone APK Mode (No Backend Required)
+# Standalone APK Guide (No Server Setup)
 
-This document describes version `1.1.0` standalone mode for The Gate Android TV app.
+This document defines the complete standalone package for The Gate Android TV app.
+
+## Release artifact
+
+Canonical install file:
+
+- `TheGate_SAL.apk`
+
+Location after build:
+
+- `android/app/build/outputs/apk/debug/TheGate_SAL.apk`
+
+Distribution copy:
+
+- `app/TheGate_SAL.apk`
 
 ## Goal
 
-Run The Gate as a self-contained APK without depending on a NAS or Node backend for runtime configuration.
+Deliver a single APK that users can download and install directly on Android TV with no NAS, no Node.js process, and no local network backend setup.
 
-## What changed in standalone mode
+## What is inside the standalone APK
 
-1. The web UI is bundled into APK assets at build time.
-2. Default startup URL is local:
+1. Frontend UI (`index.html`, `app.js`, `styles.css`) is bundled into APK assets.
+2. Vocabulary dataset (`vocabulary.js`) is bundled into APK assets.
+3. Runtime configuration is stored on-device using local storage.
+4. Parent passcode and lock settings are stored on-device.
+5. YouTube unlock feature remains enabled.
+
+Default app URL at runtime:
 
 ```properties
 GATE_URL=file:///android_asset/index.html
 ```
 
-3. Parent settings are now on the login/splash screen, protected by passcode.
-4. Runtime settings are persisted locally on-device using browser local storage.
+## Parent settings at login
 
-## Parent settings on login page
-
-From splash screen, open `Parent Settings` and enter passcode.
+On splash screen, open `Parent Settings` and unlock with passcode.
 
 Default passcode:
 
@@ -31,45 +47,73 @@ Configurable values:
 1. `Time Limit (minutes)`
 2. `Questions To Answer`
 3. `Correct Needed To Unlock`
-4. Optional passcode rotation (`New Passcode`)
+4. `New Passcode` (optional)
 
-Validation rules:
+Validation:
 
-- Time limit: `1-120` minutes
-- Questions to answer: `1-20`
-- Correct needed: `1` to `Questions To Answer`
+- Time limit: `1-120`
+- Questions: `1-20`
+- Correct needed: `1..Questions`
 
-## Unlock behavior
+## YouTube behavior in standalone mode
 
-After quiz ends:
+1. Child completes the vocabulary round.
+2. YouTube unlocks only when `score >= Correct Needed To Unlock`.
+3. Session auto-returns to gate when time limit ends.
+4. Child must pass the gate again to continue.
 
-- YouTube unlocks only if `score >= Correct Needed To Unlock`.
-- If score is lower, the watch button stays disabled and shows required threshold.
+Internet is still required for YouTube playback, but no server is required for The Gate app itself.
 
-## Build
+## Build steps
 
 From `android/`:
 
 ```powershell
-.\build-apk.ps1
+.\build-apk.ps1 -Configuration Debug
 ```
 
-Output APK:
+Create release filename:
 
-```text
-android/app/build/outputs/apk/debug/app-debug.apk
+```powershell
+Copy-Item -Force .\app\build\outputs\apk\debug\app-debug.apk .\app\build\outputs\apk\debug\TheGate_SAL.apk
+Copy-Item -Force .\app\build\outputs\apk\debug\TheGate_SAL.apk ..\app\TheGate_SAL.apk
 ```
+
+## TV installation options
+
+### Option A: ADB install (recommended for admins)
+
+```powershell
+$adb = Join-Path $env:LOCALAPPDATA 'TheGateAndroidTools\android-sdk\platform-tools\adb.exe'
+& $adb connect <tv-ip>:5555
+& $adb install -r .\app\build\outputs\apk\debug\TheGate_SAL.apk
+```
+
+### Option B: User download link (recommended for parents/users)
+
+1. Upload `TheGate_SAL.apk` to your file share/web share.
+2. Open the link in TV browser.
+3. Download and install APK.
+4. Grant install-from-unknown-sources when prompted.
+
+## Replacement policy for new standalone versions
+
+When shipping a new standalone build:
+
+1. Rebuild APK.
+2. Replace the previous distributed APK with latest `TheGate_SAL.apk`.
+3. Keep old builds in archive if rollback is needed.
 
 ## Optional hosted mode
 
-You can still point the wrapper to a hosted gate URL by changing `android/gradle.properties`:
+If you ever need server mode again, set `android/gradle.properties`:
 
 ```properties
 GATE_URL=http://<your-host>:5501/
 ```
 
-## Notes
+## Security and support notes
 
-- Standalone mode removes backend dependency for configuration at runtime.
-- Vocabulary and gameplay scripts are included in the app assets packaged into the APK.
-- For security, change default passcode after first install.
+1. Change default passcode on first run.
+2. Standalone mode stores config locally on each TV.
+3. If app state is corrupted, clear app data and reconfigure parent settings.

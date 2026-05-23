@@ -28,6 +28,19 @@ the experience can take over a Smart TV the way YouTube itself does.
 
 ## Quick start
 
+### Standalone APK (recommended)
+
+```powershell
+cd android
+./build-apk.ps1
+Copy-Item -Force .\app\build\outputs\apk\debug\app-debug.apk .\app\build\outputs\apk\debug\TheGate_SAL.apk
+Copy-Item -Force .\app\build\outputs\apk\debug\TheGate_SAL.apk ..\app\TheGate_SAL.apk
+```
+
+Give users `TheGate_SAL.apk` to install directly on TV. No network server setup is required for gate/config/vocabulary runtime.
+
+### Hosted mode (optional)
+
 ```powershell
 # 1. Serve the gate web app from any always-on host (NAS, Pi, workstation)
 cd app
