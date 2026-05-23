@@ -1,0 +1,50 @@
+# The Gate — Container Manager / docker compose deployment
+#
+# Project layout expected on the host:
+#
+#   The Gate/
+#   ├── source/                     <-- this folder (git checkout)
+#   │   ├── docker-compose.yml      <-- this file
+#   │   └── app/                    <-- node application + Dockerfile
+#   ├── data/
+#   │   ├── config.json             <-- persisted runtime configuration
+#   │   └── vocabulary.json         <-- persisted vocabulary cards
+#   └── TheGate.apk                 <-- (optional) APK served at /TheGate.apk
+#
+# Bring up:
+#   docker compose up -d --build
+#
+# Or import this file as a Project in Synology Container Manager.
+
+services:
+  thegate:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    image: thegate:latest
+    container_name: thegate
+    restart: unless-stopped
+    ports:
+      - "5501:5501"
+    environment:
+      NODE_ENV: production
+      PORT: "5501"
+      HOST: "0.0.0.0"
+      TZ: "Asia/Bangkok"
+    volumes:
+      # Persistent state — survives container rebuilds.
+      - ../data/config.json:/usr/src/app/config.json
+      - ../data/vocabulary.json:/usr/src/app/vocabulary.json
+      # APK served to the TV. Read-only so the container can't replace it.
+      - ../TheGate.apk:/usr/src/app/TheGate.apk:ro
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:5501/api/config"]
+      interval: 30s
+      timeout: 5s
+      start_period: 15s
+      retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"

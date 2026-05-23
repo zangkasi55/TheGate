@@ -1,44 +1,62 @@
 # Deployment
 
 The Gate is designed to live on a private LAN host with the Android TV
-connecting to it over HTTP. This document covers a few common patterns.
-Every option is equivalent — pick whichever your home infra prefers.
+connecting to it over HTTP. The **recommended** deployment is Docker (or
+Synology Container Manager) — that's what gives you crash recovery, log
+rotation, and clean upgrades for free.
 
-## Option A — Synology NAS (Task Scheduler)
+## Option A — Synology Container Manager (recommended)
 
-Used by the reference deployment. Works on any DSM 7 NAS with the
-Node.js v20 package.
+Repo layout when you clone or extract on the NAS:
 
-1. Copy the contents of `app/` to the NAS, e.g. `\\<nas>\share\TheGate\`.
-2. SSH in and install dependencies (one-time):
+```
+The Gate/
+├── source/                     # git checkout of this repo
+│   ├── docker-compose.yml
+│   └── app/Dockerfile
+├── data/
+│   ├── config.json             # persisted runtime config
+│   └── vocabulary.json         # persisted vocabulary cards
+└── TheGate.apk                 # (optional) the Android TV installer
+```
 
-   ```bash
-   cd /volume1/share/TheGate
-   /usr/local/bin/pnpm install
-   ```
+1. Drop the repo into a Synology share, e.g. via File Station:
+   `\\<nas>\<share>\The Gate\source\`.
+2. Put your existing `config.json` and `vocabulary.json` into
+   `The Gate/data/`. If you're starting fresh, copy the seed files from
+   `source/app/` or let the container create defaults on first boot.
+3. DSM → **Container Manager → Project → Create**:
+   - **Project name**: `thegate`
+   - **Path**: `/volume1/.../The Gate/source`
+   - **Source**: *Use existing docker-compose.yml*
+4. Click **Build**, then **Run**. The `unless-stopped` restart policy in
+   the compose file takes over from there.
 
-3. DSM → **Control Panel → Task Scheduler → Create → Triggered Task →
-   User-defined script**.
-   - **Event**: Boot-up
-   - **User**: root (or a service account with read access to the folder)
-   - **Run command**:
+To update the app:
 
-     ```bash
-     cd /volume1/share/TheGate && /usr/local/bin/node server.js >> /var/log/thegate.log 2>&1
-     ```
+```bash
+git pull
+docker compose up -d --build
+```
 
-4. Run the task once manually to start the server; subsequent reboots
-   start it automatically.
-5. Verify from the LAN:
+Container Manager has an equivalent **Update → Build & Run** action in
+the project UI.
 
-   ```powershell
-   Invoke-WebRequest "http://<nas-ip>:5501/api/config"
-   ```
+## Option B — Plain `docker compose`
 
-To update vocabulary / config, use the parent dashboard at
-`http://<nas-ip>:5501/dashboard.html` — DSM does not need to be touched.
+Same layout, same commands, no Synology UI:
 
-## Option B — Raspberry Pi (systemd)
+```bash
+cd "/path/to/The Gate/source"
+docker compose up -d --build
+docker compose logs -f thegate
+```
+
+The healthcheck (`/api/config`) marks the container unhealthy if the API
+stops responding. Combined with `restart: unless-stopped` you get full
+crash recovery.
+
+## Option C — systemd on a Raspberry Pi (no Docker)
 
 ```ini
 # /etc/systemd/system/thegate.service
@@ -64,28 +82,20 @@ sudo systemctl enable --now thegate
 journalctl -u thegate -f
 ```
 
-## Option C — Docker
+## Option D — Synology Task Scheduler (legacy, not recommended)
 
-```dockerfile
-# Dockerfile (place at repo root)
-FROM node:20-alpine
-WORKDIR /app
-COPY app/package.json ./
-RUN npm install --omit=dev
-COPY app/ ./
-EXPOSE 5501
-CMD ["node", "server.js"]
-```
+This was the original deployment. It works but:
+
+- doesn't restart on crash,
+- doesn't rotate logs,
+- can be wiped by DSM upgrades.
+
+Prefer Option A. Keeping the recipe here for historical reference:
 
 ```bash
-docker build -t thegate .
-docker run -d --name thegate -p 5501:5501 \
-  -v "$(pwd)/data:/app" \
-  --restart unless-stopped thegate
+# Triggered Task → Boot-up → User-defined script
+cd /volume1/share/TheGate && /usr/local/bin/node server.js >> /var/log/thegate.log 2>&1
 ```
-
-The volume mount keeps `config.json` and `vocabulary.json` out of the
-image so upgrades don't lose state.
 
 ## Android TV APK
 
@@ -107,7 +117,7 @@ Install one of three ways:
 | Method                 | When to use                                                  |
 | ---------------------- | ------------------------------------------------------------ |
 | `install-to-tv.ps1`    | TV has network debugging enabled.                            |
-| Download via TV browser| TV cannot expose ADB. Host the APK at e.g. `app/TheGate.apk`.|
+| Download via TV browser| TV cannot expose ADB. Drop the APK at `The Gate/TheGate.apk` so the container serves it at `http://<host>:5501/TheGate.apk`. |
 | USB stick              | Airgap install.                                              |
 
 After install, the launcher tile is labelled **YT** and lives next to
@@ -117,18 +127,19 @@ the system YouTube tile.
 
 | Layer      | Steps                                                                |
 | ---------- | -------------------------------------------------------------------- |
-| Web app    | `git pull` → restart the Node service.                               |
+| Container  | `git pull && docker compose up -d --build`                           |
 | Vocabulary | Edit live via dashboard. No restart needed.                          |
 | Config     | Edit live via dashboard.                                             |
-| APK        | Bump `versionCode` in `android/app/build.gradle`, rebuild, install.  |
+| APK        | Bump `versionCode` in `android/app/build.gradle`, rebuild, drop into `The Gate/TheGate.apk`. |
 
-## Rollback
+## Backup & rollback
 
-Every state-changing dashboard call rewrites the JSON file atomically;
-keep a periodic backup of:
+`The Gate/data/` is the only stateful thing. Back up:
 
-- `app/config.json`
-- `app/vocabulary.json`
+```
+The Gate/data/config.json
+The Gate/data/vocabulary.json
+```
 
-Rolling back is `cp backup/config.json app/config.json` and a service
-restart.
+Rolling back is `cp backup/config.json data/config.json` and
+`docker compose restart thegate`.
