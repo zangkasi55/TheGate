@@ -1,0 +1,2186 @@
+[
+  {
+    "word": "cat",
+    "emoji": "🐱",
+    "category": "animal"
+  },
+  {
+    "word": "dog",
+    "emoji": "🐶",
+    "category": "animal"
+  },
+  {
+    "word": "bird",
+    "emoji": "🐦",
+    "category": "animal"
+  },
+  {
+    "word": "fish",
+    "emoji": "🐠",
+    "category": "animal"
+  },
+  {
+    "word": "cow",
+    "emoji": "🐮",
+    "category": "animal"
+  },
+  {
+    "word": "pig",
+    "emoji": "🐷",
+    "category": "animal"
+  },
+  {
+    "word": "horse",
+    "emoji": "🐴",
+    "category": "animal"
+  },
+  {
+    "word": "sheep",
+    "emoji": "🐑",
+    "category": "animal"
+  },
+  {
+    "word": "duck",
+    "emoji": "🦆",
+    "category": "animal"
+  },
+  {
+    "word": "frog",
+    "emoji": "🐸",
+    "category": "animal"
+  },
+  {
+    "word": "bear",
+    "emoji": "🐻",
+    "category": "animal",
+    "alts": [
+      "bare"
+    ]
+  },
+  {
+    "word": "lion",
+    "emoji": "🦁",
+    "category": "animal"
+  },
+  {
+    "word": "tiger",
+    "emoji": "🐯",
+    "category": "animal"
+  },
+  {
+    "word": "elephant",
+    "emoji": "🐘",
+    "category": "animal"
+  },
+  {
+    "word": "monkey",
+    "emoji": "🐵",
+    "category": "animal"
+  },
+  {
+    "word": "rabbit",
+    "emoji": "🐰",
+    "category": "animal"
+  },
+  {
+    "word": "mouse",
+    "emoji": "🐭",
+    "category": "animal"
+  },
+  {
+    "word": "snake",
+    "emoji": "🐍",
+    "category": "animal"
+  },
+  {
+    "word": "turtle",
+    "emoji": "🐢",
+    "category": "animal"
+  },
+  {
+    "word": "butterfly",
+    "emoji": "🦋",
+    "category": "animal"
+  },
+  {
+    "word": "bee",
+    "emoji": "🐝",
+    "category": "animal",
+    "alts": [
+      "be"
+    ]
+  },
+  {
+    "word": "owl",
+    "emoji": "🦉",
+    "category": "animal"
+  },
+  {
+    "word": "fox",
+    "emoji": "🦊",
+    "category": "animal"
+  },
+  {
+    "word": "penguin",
+    "emoji": "🐧",
+    "category": "animal"
+  },
+  {
+    "word": "panda",
+    "emoji": "🐼",
+    "category": "animal"
+  },
+  {
+    "word": "koala",
+    "emoji": "🐨",
+    "category": "animal"
+  },
+  {
+    "word": "kangaroo",
+    "emoji": "🦘",
+    "category": "animal"
+  },
+  {
+    "word": "dolphin",
+    "emoji": "🐬",
+    "category": "animal"
+  },
+  {
+    "word": "whale",
+    "emoji": "🐳",
+    "category": "animal"
+  },
+  {
+    "word": "octopus",
+    "emoji": "🐙",
+    "category": "animal"
+  },
+  {
+    "word": "crab",
+    "emoji": "🦀",
+    "category": "animal"
+  },
+  {
+    "word": "shark",
+    "emoji": "🦈",
+    "category": "animal"
+  },
+  {
+    "word": "giraffe",
+    "emoji": "🦒",
+    "category": "animal"
+  },
+  {
+    "word": "zebra",
+    "emoji": "🦓",
+    "category": "animal"
+  },
+  {
+    "word": "unicorn",
+    "emoji": "🦄",
+    "category": "animal"
+  },
+  {
+    "word": "ladybug",
+    "emoji": "🐞",
+    "category": "animal"
+  },
+  {
+    "word": "spider",
+    "emoji": "🕷️",
+    "category": "animal"
+  },
+  {
+    "word": "snails",
+    "emoji": "🐌",
+    "category": "animal",
+    "alts": [
+      "snail"
+    ]
+  },
+  {
+    "word": "deer",
+    "emoji": "🦌",
+    "category": "animal",
+    "alts": [
+      "dear"
+    ]
+  },
+  {
+    "word": "chick",
+    "emoji": "🐤",
+    "category": "animal"
+  },
+  {
+    "word": "dinosaur",
+    "emoji": "🦖",
+    "category": "animal"
+  },
+  {
+    "word": "apple",
+    "emoji": "🍎",
+    "category": "fruit"
+  },
+  {
+    "word": "banana",
+    "emoji": "🍌",
+    "category": "fruit"
+  },
+  {
+    "word": "orange",
+    "emoji": "🍊",
+    "category": "fruit"
+  },
+  {
+    "word": "grape",
+    "emoji": "🍇",
+    "category": "fruit",
+    "alts": [
+      "grapes"
+    ]
+  },
+  {
+    "word": "strawberry",
+    "emoji": "🍓",
+    "category": "fruit"
+  },
+  {
+    "word": "watermelon",
+    "emoji": "🍉",
+    "category": "fruit"
+  },
+  {
+    "word": "pineapple",
+    "emoji": "🍍",
+    "category": "fruit"
+  },
+  {
+    "word": "mango",
+    "emoji": "🥭",
+    "category": "fruit"
+  },
+  {
+    "word": "cherry",
+    "emoji": "🍒",
+    "category": "fruit",
+    "alts": [
+      "cherries"
+    ]
+  },
+  {
+    "word": "lemon",
+    "emoji": "🍋",
+    "category": "fruit"
+  },
+  {
+    "word": "peach",
+    "emoji": "🍑",
+    "category": "fruit"
+  },
+  {
+    "word": "pear",
+    "emoji": "🍐",
+    "category": "fruit",
+    "alts": [
+      "pair",
+      "pare"
+    ]
+  },
+  {
+    "word": "melon",
+    "emoji": "🍈",
+    "category": "fruit"
+  },
+  {
+    "word": "kiwi",
+    "emoji": "🥝",
+    "category": "fruit"
+  },
+  {
+    "word": "coconut",
+    "emoji": "🥥",
+    "category": "fruit"
+  },
+  {
+    "word": "blueberry",
+    "emoji": "🫐",
+    "category": "fruit"
+  },
+  {
+    "word": "carrot",
+    "emoji": "🥕",
+    "category": "vegetable"
+  },
+  {
+    "word": "tomato",
+    "emoji": "🍅",
+    "category": "vegetable"
+  },
+  {
+    "word": "potato",
+    "emoji": "🥔",
+    "category": "vegetable"
+  },
+  {
+    "word": "corn",
+    "emoji": "🌽",
+    "category": "vegetable"
+  },
+  {
+    "word": "broccoli",
+    "emoji": "🥦",
+    "category": "vegetable"
+  },
+  {
+    "word": "onion",
+    "emoji": "🧅",
+    "category": "vegetable"
+  },
+  {
+    "word": "cucumber",
+    "emoji": "🥒",
+    "category": "vegetable"
+  },
+  {
+    "word": "pepper",
+    "emoji": "🫑",
+    "category": "vegetable"
+  },
+  {
+    "word": "mushroom",
+    "emoji": "🍄",
+    "category": "vegetable"
+  },
+  {
+    "word": "pumpkin",
+    "emoji": "🎃",
+    "category": "vegetable"
+  },
+  {
+    "word": "red",
+    "emoji": "🔴",
+    "category": "color"
+  },
+  {
+    "word": "blue",
+    "emoji": "🔵",
+    "category": "color"
+  },
+  {
+    "word": "green",
+    "emoji": "🟢",
+    "category": "color"
+  },
+  {
+    "word": "yellow",
+    "emoji": "🟡",
+    "category": "color"
+  },
+  {
+    "word": "purple",
+    "emoji": "🟣",
+    "category": "color"
+  },
+  {
+    "word": "pink",
+    "emoji": "🩷",
+    "category": "color"
+  },
+  {
+    "word": "black",
+    "emoji": "⚫",
+    "category": "color"
+  },
+  {
+    "word": "white",
+    "emoji": "⚪",
+    "category": "color"
+  },
+  {
+    "word": "brown",
+    "emoji": "🟤",
+    "category": "color"
+  },
+  {
+    "word": "rainbow",
+    "emoji": "🌈",
+    "category": "color"
+  },
+  {
+    "word": "one",
+    "emoji": "1️⃣",
+    "category": "number",
+    "alts": [
+      "won"
+    ]
+  },
+  {
+    "word": "two",
+    "emoji": "2️⃣",
+    "category": "number",
+    "alts": [
+      "to",
+      "too"
+    ]
+  },
+  {
+    "word": "three",
+    "emoji": "3️⃣",
+    "category": "number"
+  },
+  {
+    "word": "four",
+    "emoji": "4️⃣",
+    "category": "number",
+    "alts": [
+      "for",
+      "fore"
+    ]
+  },
+  {
+    "word": "five",
+    "emoji": "5️⃣",
+    "category": "number"
+  },
+  {
+    "word": "six",
+    "emoji": "6️⃣",
+    "category": "number"
+  },
+  {
+    "word": "seven",
+    "emoji": "7️⃣",
+    "category": "number"
+  },
+  {
+    "word": "eight",
+    "emoji": "8️⃣",
+    "category": "number",
+    "alts": [
+      "ate"
+    ]
+  },
+  {
+    "word": "nine",
+    "emoji": "9️⃣",
+    "category": "number"
+  },
+  {
+    "word": "ten",
+    "emoji": "🔟",
+    "category": "number"
+  },
+  {
+    "word": "zero",
+    "emoji": "0️⃣",
+    "category": "number"
+  },
+  {
+    "word": "circle",
+    "emoji": "⭕",
+    "category": "shape"
+  },
+  {
+    "word": "square",
+    "emoji": "🟦",
+    "category": "shape"
+  },
+  {
+    "word": "triangle",
+    "emoji": "🔺",
+    "category": "shape"
+  },
+  {
+    "word": "diamond",
+    "emoji": "💎",
+    "category": "shape"
+  },
+  {
+    "word": "oval",
+    "emoji": "🥚",
+    "category": "shape"
+  },
+  {
+    "word": "baby",
+    "emoji": "👶",
+    "category": "family"
+  },
+  {
+    "word": "mom",
+    "emoji": "👩",
+    "category": "family",
+    "alts": [
+      "mum",
+      "mommy",
+      "mama"
+    ]
+  },
+  {
+    "word": "dad",
+    "emoji": "👨",
+    "category": "family",
+    "alts": [
+      "daddy",
+      "papa"
+    ]
+  },
+  {
+    "word": "sister",
+    "emoji": "👧",
+    "category": "family"
+  },
+  {
+    "word": "brother",
+    "emoji": "👦",
+    "category": "family"
+  },
+  {
+    "word": "grandma",
+    "emoji": "👵",
+    "category": "family",
+    "alts": [
+      "grandmother"
+    ]
+  },
+  {
+    "word": "grandpa",
+    "emoji": "👴",
+    "category": "family",
+    "alts": [
+      "grandfather"
+    ]
+  },
+  {
+    "word": "bread",
+    "emoji": "🍞",
+    "category": "food"
+  },
+  {
+    "word": "milk",
+    "emoji": "🥛",
+    "category": "food"
+  },
+  {
+    "word": "cake",
+    "emoji": "🍰",
+    "category": "food"
+  },
+  {
+    "word": "pizza",
+    "emoji": "🍕",
+    "category": "food"
+  },
+  {
+    "word": "cookie",
+    "emoji": "🍪",
+    "category": "food"
+  },
+  {
+    "word": "cheese",
+    "emoji": "🧀",
+    "category": "food"
+  },
+  {
+    "word": "rice",
+    "emoji": "🍚",
+    "category": "food"
+  },
+  {
+    "word": "ice cream",
+    "emoji": "🍦",
+    "category": "food",
+    "alts": [
+      "icecream"
+    ]
+  },
+  {
+    "word": "donut",
+    "emoji": "🍩",
+    "category": "food",
+    "alts": [
+      "doughnut"
+    ]
+  },
+  {
+    "word": "honey",
+    "emoji": "🍯",
+    "category": "food"
+  },
+  {
+    "word": "burger",
+    "emoji": "🍔",
+    "category": "food"
+  },
+  {
+    "word": "french fries",
+    "emoji": "🍟",
+    "category": "food",
+    "alts": [
+      "fries"
+    ]
+  },
+  {
+    "word": "popcorn",
+    "emoji": "🍿",
+    "category": "food"
+  },
+  {
+    "word": "candy",
+    "emoji": "🍬",
+    "category": "food"
+  },
+  {
+    "word": "lollipop",
+    "emoji": "🍭",
+    "category": "food"
+  },
+  {
+    "word": "chocolate",
+    "emoji": "🍫",
+    "category": "food"
+  },
+  {
+    "word": "juice",
+    "emoji": "🧃",
+    "category": "food"
+  },
+  {
+    "word": "meat",
+    "emoji": "🥩",
+    "category": "food",
+    "alts": [
+      "meet"
+    ]
+  },
+  {
+    "word": "soup",
+    "emoji": "🥣",
+    "category": "food"
+  },
+  {
+    "word": "car",
+    "emoji": "🚗",
+    "category": "vehicle"
+  },
+  {
+    "word": "bus",
+    "emoji": "🚌",
+    "category": "vehicle"
+  },
+  {
+    "word": "train",
+    "emoji": "🚂",
+    "category": "vehicle"
+  },
+  {
+    "word": "plane",
+    "emoji": "✈️",
+    "category": "vehicle",
+    "alts": [
+      "airplane",
+      "plain"
+    ]
+  },
+  {
+    "word": "boat",
+    "emoji": "⛵",
+    "category": "vehicle"
+  },
+  {
+    "word": "bike",
+    "emoji": "🚲",
+    "category": "vehicle",
+    "alts": [
+      "bicycle"
+    ]
+  },
+  {
+    "word": "truck",
+    "emoji": "🚚",
+    "category": "vehicle"
+  },
+  {
+    "word": "rocket",
+    "emoji": "🚀",
+    "category": "vehicle"
+  },
+  {
+    "word": "helicopter",
+    "emoji": "🚁",
+    "category": "vehicle"
+  },
+  {
+    "word": "police car",
+    "emoji": "🚓",
+    "category": "vehicle"
+  },
+  {
+    "word": "ambulance",
+    "emoji": "🚑",
+    "category": "vehicle"
+  },
+  {
+    "word": "fire truck",
+    "emoji": "🚒",
+    "category": "vehicle"
+  },
+  {
+    "word": "hat",
+    "emoji": "🎩",
+    "category": "clothes"
+  },
+  {
+    "word": "shirt",
+    "emoji": "👕",
+    "category": "clothes"
+  },
+  {
+    "word": "shoes",
+    "emoji": "👟",
+    "category": "clothes",
+    "alts": [
+      "shoe"
+    ]
+  },
+  {
+    "word": "socks",
+    "emoji": "🧦",
+    "category": "clothes",
+    "alts": [
+      "sock"
+    ]
+  },
+  {
+    "word": "dress",
+    "emoji": "👗",
+    "category": "clothes"
+  },
+  {
+    "word": "skirt",
+    "emoji": "👚",
+    "category": "clothes"
+  },
+  {
+    "word": "jacket",
+    "emoji": "🧥",
+    "category": "clothes"
+  },
+  {
+    "word": "crown",
+    "emoji": "👑",
+    "category": "clothes"
+  },
+  {
+    "word": "ring",
+    "emoji": "💍",
+    "category": "clothes"
+  },
+  {
+    "word": "glasses",
+    "emoji": "👓",
+    "category": "clothes"
+  },
+  {
+    "word": "bag",
+    "emoji": "🎒",
+    "category": "clothes"
+  },
+  {
+    "word": "moon",
+    "emoji": "🌙",
+    "category": "nature"
+  },
+  {
+    "word": "cloud",
+    "emoji": "☁️",
+    "category": "nature"
+  },
+  {
+    "word": "rain",
+    "emoji": "🌧️",
+    "category": "nature",
+    "alts": [
+      "reign"
+    ]
+  },
+  {
+    "word": "tree",
+    "emoji": "🌳",
+    "category": "nature"
+  },
+  {
+    "word": "flower",
+    "emoji": "🌸",
+    "category": "nature",
+    "alts": [
+      "flour"
+    ]
+  },
+  {
+    "word": "snow",
+    "emoji": "❄️",
+    "category": "nature"
+  },
+  {
+    "word": "wind",
+    "emoji": "💨",
+    "category": "nature"
+  },
+  {
+    "word": "leaf",
+    "emoji": "🍃",
+    "category": "nature"
+  },
+  {
+    "word": "fire",
+    "emoji": "🔥",
+    "category": "nature"
+  },
+  {
+    "word": "mountain",
+    "emoji": "⛰️",
+    "category": "nature"
+  },
+  {
+    "word": "beach",
+    "emoji": "🏖️",
+    "category": "nature",
+    "alts": [
+      "beech"
+    ]
+  },
+  {
+    "word": "river",
+    "emoji": "🌊",
+    "category": "nature"
+  },
+  {
+    "word": "ice",
+    "emoji": "🧊",
+    "category": "nature"
+  },
+  {
+    "word": "ball",
+    "emoji": "⚽",
+    "category": "object"
+  },
+  {
+    "word": "book",
+    "emoji": "📚",
+    "category": "object"
+  },
+  {
+    "word": "balloon",
+    "emoji": "🎈",
+    "category": "object"
+  },
+  {
+    "word": "doll",
+    "emoji": "🪆",
+    "category": "object"
+  },
+  {
+    "word": "teddy bear",
+    "emoji": "🧸",
+    "category": "object",
+    "alts": [
+      "bear"
+    ]
+  },
+  {
+    "word": "gift",
+    "emoji": "🎁",
+    "category": "object",
+    "alts": [
+      "present"
+    ]
+  },
+  {
+    "word": "crayon",
+    "emoji": "🖍️",
+    "category": "object"
+  },
+  {
+    "word": "pencil",
+    "emoji": "✏️",
+    "category": "object"
+  },
+  {
+    "word": "kite",
+    "emoji": "🪁",
+    "category": "object"
+  },
+  {
+    "word": "bubble",
+    "emoji": "🫧",
+    "category": "object"
+  },
+  {
+    "word": "clock",
+    "emoji": "🕐",
+    "category": "object"
+  },
+  {
+    "word": "key",
+    "emoji": "🔑",
+    "category": "object"
+  },
+  {
+    "word": "bed",
+    "emoji": "🛏️",
+    "category": "object"
+  },
+  {
+    "word": "door",
+    "emoji": "🚪",
+    "category": "object"
+  },
+  {
+    "word": "chair",
+    "emoji": "🪑",
+    "category": "object"
+  },
+  {
+    "word": "table",
+    "emoji": "🪑",
+    "category": "object"
+  },
+  {
+    "word": "fairy",
+    "emoji": "🧚‍♀️",
+    "category": "nature"
+  },
+  {
+    "word": "mermaid",
+    "emoji": "🧜‍♀️",
+    "category": "nature"
+  },
+  {
+    "word": "castle",
+    "emoji": "🏰",
+    "category": "object"
+  },
+  {
+    "word": "wand",
+    "emoji": "🪄",
+    "category": "object"
+  },
+  {
+    "word": "mirror",
+    "emoji": "🪞",
+    "category": "object"
+  },
+  {
+    "word": "perfume",
+    "emoji": "🧴",
+    "category": "object"
+  },
+  {
+    "word": "ribbon",
+    "emoji": "🎀",
+    "category": "clothes"
+  },
+  {
+    "word": "shell",
+    "emoji": "🐚",
+    "category": "nature"
+  },
+  {
+    "word": "glitter",
+    "emoji": "✨",
+    "category": "nature",
+    "alts": [
+      "sparkle"
+    ]
+  },
+  {
+    "word": "hair",
+    "emoji": "💇‍♀️",
+    "category": "body",
+    "alts": [
+      "hare"
+    ]
+  },
+  {
+    "word": "teeth",
+    "emoji": "🦷",
+    "category": "body",
+    "alts": [
+      "tooth"
+    ]
+  },
+  {
+    "word": "smile",
+    "emoji": "😊",
+    "category": "body"
+  },
+  {
+    "word": "run",
+    "emoji": "🏃‍♀️",
+    "category": "object"
+  },
+  {
+    "word": "jump",
+    "emoji": "🦘",
+    "category": "object"
+  },
+  {
+    "word": "dance",
+    "emoji": "💃",
+    "category": "object"
+  },
+  {
+    "word": "sing",
+    "emoji": "🎤",
+    "category": "object"
+  },
+  {
+    "word": "sleep",
+    "emoji": "😴",
+    "category": "object"
+  },
+  {
+    "word": "eat",
+    "emoji": "😋",
+    "category": "object"
+  },
+  {
+    "word": "drink",
+    "emoji": "🥤",
+    "category": "object"
+  },
+  {
+    "word": "wash",
+    "emoji": "🧼",
+    "category": "object"
+  },
+  {
+    "word": "swim",
+    "emoji": "🏊‍♀️",
+    "category": "object"
+  },
+  {
+    "word": "paint",
+    "emoji": "🎨",
+    "category": "object"
+  },
+  {
+    "word": "write",
+    "emoji": "✍️",
+    "category": "object"
+  },
+  {
+    "word": "read",
+    "emoji": "📖",
+    "category": "object",
+    "alts": [
+      "red"
+    ]
+  },
+  {
+    "word": "play",
+    "emoji": "🧸",
+    "category": "object"
+  },
+  {
+    "word": "laugh",
+    "emoji": "😆",
+    "category": "object"
+  },
+  {
+    "word": "hug",
+    "emoji": "🤗",
+    "category": "object"
+  },
+  {
+    "word": "clapping",
+    "emoji": "👏",
+    "category": "object",
+    "alts": [
+      "clap"
+    ]
+  },
+  {
+    "word": "school",
+    "emoji": "🏫",
+    "category": "object"
+  },
+  {
+    "word": "house",
+    "emoji": "🏠",
+    "category": "object"
+  },
+  {
+    "word": "room",
+    "emoji": "🚪",
+    "category": "object"
+  },
+  {
+    "word": "playground",
+    "emoji": "🛝",
+    "category": "object",
+    "alts": [
+      "slide"
+    ]
+  },
+  {
+    "word": "swing",
+    "emoji": "🛝",
+    "category": "object"
+  },
+  {
+    "word": "bus stop",
+    "emoji": "🏣",
+    "category": "object"
+  },
+  {
+    "word": "garden",
+    "emoji": "🏡",
+    "category": "object"
+  },
+  {
+    "word": "tent",
+    "emoji": "⛺",
+    "category": "object"
+  },
+  {
+    "word": "piano",
+    "emoji": "🎹",
+    "category": "object"
+  },
+  {
+    "word": "guitar",
+    "emoji": "🎸",
+    "category": "object"
+  },
+  {
+    "word": "violin",
+    "emoji": "🎻",
+    "category": "object"
+  },
+  {
+    "word": "trumpet",
+    "emoji": "🎺",
+    "category": "object"
+  },
+  {
+    "word": "harp",
+    "emoji": "🪕",
+    "category": "object"
+  },
+  {
+    "word": "earth",
+    "emoji": "🌍",
+    "category": "nature"
+  },
+  {
+    "word": "alien",
+    "emoji": "👽",
+    "category": "nature"
+  },
+  {
+    "word": "telescope",
+    "emoji": "🔭",
+    "category": "object"
+  },
+  {
+    "word": "water bottle",
+    "emoji": "🧴",
+    "category": "object"
+  },
+  {
+    "word": "backpack",
+    "emoji": "🎒",
+    "category": "school"
+  },
+  {
+    "word": "eraser",
+    "emoji": "🩹",
+    "category": "school"
+  },
+  {
+    "word": "notebook",
+    "emoji": "📓",
+    "category": "school"
+  },
+  {
+    "word": "marker",
+    "emoji": "🖊️",
+    "category": "school"
+  },
+  {
+    "word": "glue",
+    "emoji": "🧴",
+    "category": "school"
+  },
+  {
+    "word": "scissors",
+    "emoji": "✂️",
+    "category": "school"
+  },
+  {
+    "word": "ruler",
+    "emoji": "📏",
+    "category": "school"
+  },
+  {
+    "word": "teacher",
+    "emoji": "🧑‍🏫",
+    "category": "school"
+  },
+  {
+    "word": "student",
+    "emoji": "🧒",
+    "category": "school"
+  },
+  {
+    "word": "classroom",
+    "emoji": "🏫",
+    "category": "place"
+  },
+  {
+    "word": "library",
+    "emoji": "📚",
+    "category": "place"
+  },
+  {
+    "word": "bathroom",
+    "emoji": "🚻",
+    "category": "place"
+  },
+  {
+    "word": "bedroom",
+    "emoji": "🛏️",
+    "category": "place"
+  },
+  {
+    "word": "kitchen",
+    "emoji": "🍽️",
+    "category": "place"
+  },
+  {
+    "word": "living room",
+    "emoji": "🛋️",
+    "category": "place"
+  },
+  {
+    "word": "park",
+    "emoji": "🌳",
+    "category": "place"
+  },
+  {
+    "word": "street",
+    "emoji": "🛣️",
+    "category": "place"
+  },
+  {
+    "word": "home",
+    "emoji": "🏠",
+    "category": "place"
+  },
+  {
+    "word": "hospital",
+    "emoji": "🏥",
+    "category": "place"
+  },
+  {
+    "word": "shop",
+    "emoji": "🏪",
+    "category": "place"
+  },
+  {
+    "word": "morning",
+    "emoji": "🌅",
+    "category": "time"
+  },
+  {
+    "word": "afternoon",
+    "emoji": "🌤️",
+    "category": "time"
+  },
+  {
+    "word": "evening",
+    "emoji": "🌇",
+    "category": "time"
+  },
+  {
+    "word": "night",
+    "emoji": "🌙",
+    "category": "time"
+  },
+  {
+    "word": "today",
+    "emoji": "📅",
+    "category": "time"
+  },
+  {
+    "word": "tomorrow",
+    "emoji": "⏭️",
+    "category": "time"
+  },
+  {
+    "word": "yesterday",
+    "emoji": "⏮️",
+    "category": "time"
+  },
+  {
+    "word": "breakfast",
+    "emoji": "🥣",
+    "category": "food"
+  },
+  {
+    "word": "lunch",
+    "emoji": "🍱",
+    "category": "food"
+  },
+  {
+    "word": "dinner",
+    "emoji": "🍛",
+    "category": "food"
+  },
+  {
+    "word": "snack",
+    "emoji": "🍪",
+    "category": "food"
+  },
+  {
+    "word": "sandwich",
+    "emoji": "🥪",
+    "category": "food"
+  },
+  {
+    "word": "noodles",
+    "emoji": "🍜",
+    "category": "food"
+  },
+  {
+    "word": "chicken rice",
+    "emoji": "🍗",
+    "category": "food"
+  },
+  {
+    "word": "yogurt",
+    "emoji": "🥛",
+    "category": "food"
+  },
+  {
+    "word": "toothbrush",
+    "emoji": "🪥",
+    "category": "routine"
+  },
+  {
+    "word": "toothpaste",
+    "emoji": "🧴",
+    "category": "routine"
+  },
+  {
+    "word": "soap",
+    "emoji": "🧼",
+    "category": "routine"
+  },
+  {
+    "word": "towel",
+    "emoji": "🧽",
+    "category": "routine"
+  },
+  {
+    "word": "comb",
+    "emoji": "🪮",
+    "category": "routine"
+  },
+  {
+    "word": "wash hands",
+    "emoji": "🧽",
+    "category": "routine"
+  },
+  {
+    "word": "take a bath",
+    "emoji": "🛁",
+    "category": "routine"
+  },
+  {
+    "word": "brush teeth",
+    "emoji": "🪥",
+    "category": "routine"
+  },
+  {
+    "word": "get dressed",
+    "emoji": "👗",
+    "category": "routine"
+  },
+  {
+    "word": "go to sleep",
+    "emoji": "😴",
+    "category": "routine"
+  },
+  {
+    "word": "wake up",
+    "emoji": "⏰",
+    "category": "routine"
+  },
+  {
+    "word": "wash face",
+    "emoji": "💦",
+    "category": "routine"
+  },
+  {
+    "word": "hands",
+    "emoji": "🤲",
+    "category": "body"
+  },
+  {
+    "word": "fingers",
+    "emoji": "🖐️",
+    "category": "body"
+  },
+  {
+    "word": "arm",
+    "emoji": "💪",
+    "category": "body"
+  },
+  {
+    "word": "leg",
+    "emoji": "🦵",
+    "category": "body"
+  },
+  {
+    "word": "tongue",
+    "emoji": "👅",
+    "category": "body"
+  },
+  {
+    "word": "stomach",
+    "emoji": "🤰",
+    "category": "body"
+  },
+  {
+    "word": "thirsty",
+    "emoji": "🥤",
+    "category": "feeling"
+  },
+  {
+    "word": "hungry",
+    "emoji": "😋",
+    "category": "feeling"
+  },
+  {
+    "word": "sleepy",
+    "emoji": "😪",
+    "category": "feeling"
+  },
+  {
+    "word": "happy",
+    "emoji": "😊",
+    "category": "feeling"
+  },
+  {
+    "word": "sad",
+    "emoji": "😢",
+    "category": "feeling"
+  },
+  {
+    "word": "angry",
+    "emoji": "😠",
+    "category": "feeling"
+  },
+  {
+    "word": "scared",
+    "emoji": "😨",
+    "category": "feeling"
+  },
+  {
+    "word": "excited",
+    "emoji": "🤩",
+    "category": "feeling"
+  },
+  {
+    "word": "please",
+    "emoji": "🙏",
+    "category": "manners"
+  },
+  {
+    "word": "thank you",
+    "emoji": "💖",
+    "category": "manners"
+  },
+  {
+    "word": "sorry",
+    "emoji": "🙇",
+    "category": "manners"
+  },
+  {
+    "word": "excuse me",
+    "emoji": "🙂",
+    "category": "manners"
+  },
+  {
+    "word": "hello",
+    "emoji": "👋",
+    "category": "manners"
+  },
+  {
+    "word": "goodbye",
+    "emoji": "👋",
+    "category": "manners"
+  },
+  {
+    "word": "yes",
+    "emoji": "✅",
+    "category": "manners"
+  },
+  {
+    "word": "no",
+    "emoji": "❌",
+    "category": "manners"
+  },
+  {
+    "word": "please wait",
+    "emoji": "⏳",
+    "category": "manners"
+  },
+  {
+    "word": "share",
+    "emoji": "🤝",
+    "category": "social"
+  },
+  {
+    "word": "help",
+    "emoji": "🆘",
+    "category": "social"
+  },
+  {
+    "word": "clean up",
+    "emoji": "🧹",
+    "category": "routine"
+  },
+  {
+    "word": "line up",
+    "emoji": "🚶",
+    "category": "school"
+  },
+  {
+    "word": "sit down",
+    "emoji": "🪑",
+    "category": "action"
+  },
+  {
+    "word": "stand up",
+    "emoji": "🧍",
+    "category": "action"
+  },
+  {
+    "word": "listen",
+    "emoji": "👂",
+    "category": "action"
+  },
+  {
+    "word": "look",
+    "emoji": "👀",
+    "category": "action"
+  },
+  {
+    "word": "draw",
+    "emoji": "🎨",
+    "category": "action"
+  },
+  {
+    "word": "color",
+    "emoji": "🖍️",
+    "category": "action"
+  },
+  {
+    "word": "count",
+    "emoji": "🔢",
+    "category": "action"
+  },
+  {
+    "word": "walk",
+    "emoji": "🚶",
+    "category": "action"
+  },
+  {
+    "word": "clap",
+    "emoji": "👏",
+    "category": "action"
+  },
+  {
+    "word": "open",
+    "emoji": "📂",
+    "category": "action"
+  },
+  {
+    "word": "close",
+    "emoji": "📕",
+    "category": "action"
+  },
+  {
+    "word": "inside",
+    "emoji": "🏠",
+    "category": "position"
+  },
+  {
+    "word": "outside",
+    "emoji": "🌤️",
+    "category": "position"
+  },
+  {
+    "word": "up",
+    "emoji": "⬆️",
+    "category": "position"
+  },
+  {
+    "word": "down",
+    "emoji": "⬇️",
+    "category": "position"
+  },
+  {
+    "word": "left",
+    "emoji": "⬅️",
+    "category": "position"
+  },
+  {
+    "word": "right",
+    "emoji": "➡️",
+    "category": "position"
+  },
+  {
+    "word": "near",
+    "emoji": "📍",
+    "category": "position"
+  },
+  {
+    "word": "far",
+    "emoji": "🛣️",
+    "category": "position"
+  },
+  {
+    "word": "on",
+    "emoji": "🔛",
+    "category": "position"
+  },
+  {
+    "word": "under",
+    "emoji": "⬇️",
+    "category": "position"
+  },
+  {
+    "word": "raincoat",
+    "emoji": "🧥",
+    "category": "clothes"
+  },
+  {
+    "word": "umbrella",
+    "emoji": "☂️",
+    "category": "object"
+  },
+  {
+    "word": "lunch box",
+    "emoji": "🍱",
+    "category": "object"
+  },
+  {
+    "word": "water",
+    "emoji": "💧",
+    "category": "food"
+  },
+  {
+    "word": "nap",
+    "emoji": "😴",
+    "category": "routine"
+  },
+  {
+    "word": "story time",
+    "emoji": "📚",
+    "category": "routine"
+  },
+  {
+    "word": "pick up",
+    "emoji": "🧸",
+    "category": "action"
+  },
+  {
+    "word": "put away",
+    "emoji": "🗂️",
+    "category": "action"
+  },
+  {
+    "word": "be careful",
+    "emoji": "⚠️",
+    "category": "safety"
+  },
+  {
+    "word": "stop",
+    "emoji": "🛑",
+    "category": "safety"
+  },
+  {
+    "word": "go",
+    "emoji": "🟢",
+    "category": "safety"
+  },
+  {
+    "word": "crosswalk",
+    "emoji": "🚸",
+    "category": "safety"
+  },
+  {
+    "word": "seat belt",
+    "emoji": "🔒",
+    "category": "safety"
+  },
+  {
+    "word": "helmet",
+    "emoji": "⛑️",
+    "category": "safety"
+  },
+  {
+    "word": "doctor",
+    "emoji": "🩺",
+    "category": "people"
+  },
+  {
+    "word": "nurse",
+    "emoji": "👩‍⚕️",
+    "category": "people"
+  },
+  {
+    "word": "friend",
+    "emoji": "🧒",
+    "category": "people"
+  },
+  {
+    "word": "neighbor",
+    "emoji": "🏘️",
+    "category": "people"
+  },
+  {
+    "word": "pack school bag",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "pack lunch bag",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "pack water cup",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "pack clean shirt",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "pack study desk",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "pack toy box",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "pack book shelf",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "pack homework book",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "pack pencil case",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "pack sports shoes",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "pack hair ribbon",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "pack rain boots",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "pack snack box",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "pack bath towel",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "pack story book",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "pack name tag",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "pack school uniform",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "pack music folder",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "pack drawing paper",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "pack meal tray",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "unpack school bag",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "unpack lunch bag",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "unpack water cup",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "unpack clean shirt",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "unpack study desk",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "unpack toy box",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "unpack book shelf",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "unpack homework book",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "unpack pencil case",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "unpack sports shoes",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "unpack hair ribbon",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "unpack rain boots",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "unpack snack box",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "unpack bath towel",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "unpack story book",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "unpack name tag",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "unpack school uniform",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "unpack music folder",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "unpack drawing paper",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "unpack meal tray",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "tidy school bag",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "tidy lunch bag",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "tidy water cup",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "tidy clean shirt",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "tidy study desk",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "tidy toy box",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "tidy book shelf",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "tidy homework book",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "tidy pencil case",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "tidy sports shoes",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "tidy hair ribbon",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "tidy rain boots",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "tidy snack box",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "tidy bath towel",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "tidy story book",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "tidy name tag",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "tidy school uniform",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "tidy music folder",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "tidy drawing paper",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "tidy meal tray",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "fold school bag",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "fold lunch bag",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "fold water cup",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "fold clean shirt",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "fold study desk",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "fold toy box",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "fold book shelf",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "fold homework book",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "fold pencil case",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "fold sports shoes",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "fold hair ribbon",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "fold rain boots",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "fold snack box",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "fold bath towel",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "fold story book",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "fold name tag",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "fold school uniform",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "fold music folder",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "fold drawing paper",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "fold meal tray",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "hang school bag",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "hang lunch bag",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "hang water cup",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "hang clean shirt",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "hang study desk",
+    "emoji": "✨",
+    "category": "daily_routine"
+  },
+  {
+    "word": "hang toy box",
+    "emoji": "✨",
+    "category": "daily_routine"
+  }
+]

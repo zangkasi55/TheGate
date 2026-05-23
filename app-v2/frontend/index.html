@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FF6B9D" />
+  <title>YouTube Kids</title>
+  <link rel="icon" type="image/x-icon" href="https://www.youtube.com/s/desktop/28237c15/img/favicon.ico" />
+  <link rel="shortcut icon" type="image/x-icon" href="https://www.youtube.com/s/desktop/28237c15/img/favicon.ico" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+
+    <!-- Splash -->
+    <section id="screen-splash" class="screen active" aria-label="Welcome screen">
+      <div class="youtube-tv-splash">
+        <div class="yt-header">
+          <div class="yt-logo">
+            <svg viewBox="0 0 100 70" width="90" height="63">
+              <path d="M98,16 C98,16 97,9 94,6 C90,2 85,2 83,2 C69,1 50,1 50,1 C50,1 31,1 17,2 C15,2 10,2 6,6 C3,9 2,16 2,16 C2,16 1,23 1,30 L1,40 C1,47 2,54 2,54 C2,54 3,61 6,64 C10,68 16,68 18,68 C32,69 50,69 50,69 C50,69 69,69 83,68 C85,68 90,68 94,64 C97,61 98,54 98,54 C98,54 99,47 99,40 L99,30 C99,23 98,16 98,16 Z" fill="#FF0000"></path>
+              <polygon points="40,20 65,35 40,50" fill="#FFFFFF"></polygon>
+            </svg>
+            <span class="yt-logotext">YouTube Kids</span>
+          </div>
+        </div>
+        
+        <h1 class="yt-splash-title">Win to Watch</h1>
+
+        <div class="welcome-characters" aria-label="Welcome characters">
+          <article class="character-card character-card--bunny" aria-label="Bunny explorer character">
+            <div class="character-avatar" aria-hidden="true">🐰</div>
+            <h3 class="character-name">Bunny Explorer</h3>
+            <p class="character-line">"Hi kids! Pick your game and let's start!"</p>
+          </article>
+        </div>
+
+        <p class="splash-hint">
+          Choose how to unlock YouTube
+        </p>
+
+        <p class="unlock-choice-label" id="unlock-choice-label">Unlock with: Words</p>
+
+        <div class="mode-picker" aria-label="Choose learning mode">
+          <button class="mode-chip mode-chip--large" id="btn-mode-word" type="button" autofocus>🗣️ Words</button>
+          <button class="mode-chip mode-chip--large" id="btn-mode-add" type="button">➕ Add Up</button>
+          <button class="mode-chip mode-chip--large" id="btn-mode-subtract" type="button">➖ Subtract</button>
+        </div>
+
+        <p class="splash-hint splash-hint--small">Tip: press Enter to start with the selected option.</p>
+      </div>
+    </section>
+
+    <!-- Flash card -->
+    <section id="screen-card" class="screen" aria-label="Flash card">
+      <header class="card-header">
+        <div class="round-indicator">
+          <span>Round</span>
+          <span class="round-indicator__current" id="round-current">1</span>
+          <span>/</span>
+          <span id="round-total">3</span>
+        </div>
+        <div class="star-tracker" id="star-tracker" aria-label="Stars earned"></div>
+      </header>
+
+      <div class="flash-card" id="flash-card">
+        <div class="flash-card__emoji" id="card-emoji" aria-hidden="true">🐱</div>
+        <div class="flash-card__word" id="card-word">cat</div>
+      </div>
+
+      <footer class="card-footer">
+        <div class="mic-indicator" id="mic-indicator">
+          <span class="mic-icon" aria-hidden="true">🎤</span>
+          <span class="mic-label" id="mic-label">Press Enter and say the word!</span>
+        </div>
+        <div class="transcript" id="transcript" aria-live="polite"></div>
+        <div class="choice-grid" id="choice-grid" aria-label="Math choices"></div>
+        <div class="button-row">
+          <button class="big-button big-button--mic" id="btn-speak">
+            <span class="big-button__icon" aria-hidden="true">🎙️</span>
+            <span class="big-button__label">Speak</span>
+          </button>
+          <button class="big-button big-button--skip" id="btn-skip" title="Try a different word">
+            <span class="big-button__icon" aria-hidden="true">⏭️</span>
+            <span class="big-button__label">Skip</span>
+          </button>
+        </div>
+      </footer>
+    </section>
+
+    <!-- Finished -->
+    <section id="screen-done" class="screen" aria-label="All done">
+      <div class="done-card">
+        <div class="done-card__emoji" aria-hidden="true">🎉</div>
+        <h2 class="done-card__title">You did it!</h2>
+        <p class="done-card__score">
+          Score: <span id="final-score">3</span> / <span id="final-total">3</span>
+        </p>
+        <button class="big-button big-button--youtube" id="btn-youtube">
+          <span class="big-button__icon" aria-hidden="true">📺</span>
+          <span class="big-button__label">Watch YouTube (10 Mins)</span>
+        </button>
+        <button class="big-button big-button--small" id="btn-restart">
+          <span class="big-button__icon" aria-hidden="true">🔄</span>
+          <span class="big-button__label">Play Again</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- YouTube Screen (Simulated Web Player) -->
+    <section id="screen-youtube" class="screen" aria-label="YouTube screen">
+      <div class="youtube-player-container">
+        <div class="youtube-timer-pill">
+          <span class="youtube-timer-icon">⏳</span>
+          <span id="youtube-time-left">10:00</span> remaining
+          <button id="btn-exit-youtube" class="youtube-exit-btn" title="Exit early back to gate">
+            <span>🚪</span> Exit
+          </button>
+        </div>
+        <!-- YouTube embed. The Android TV APK upgrades this to a native top-level WebView player. -->
+        <iframe 
+          id="youtube-iframe"
+          title="YouTube Kid Video"
+          src=""
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture; web-share" 
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+
+    <!-- Feedback overlays -->
+    <div class="overlay" id="overlay-correct" aria-hidden="true">
+      <div class="overlay__content">
+        <div class="overlay__emoji">⭐</div>
+        <div class="overlay__title">Great job!</div>
+      </div>
+    </div>
+    <div class="overlay" id="overlay-wrong" aria-hidden="true">
+      <div class="overlay__content">
+        <div class="overlay__emoji">💪</div>
+        <div class="overlay__title">Almost! Try again!</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="vocabulary.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

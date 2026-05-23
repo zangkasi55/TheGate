@@ -1,0 +1,6 @@
+{
+  "TOTAL_ROUNDS": 3,
+  "MAX_RETRIES": 2,
+  "YOUTUBE_PLAY_LIMIT_MS": 600000,
+  "YOUTUBE_URL": "https://www.youtube.com/tv"
+}

@@ -17,6 +17,7 @@ app.use(express.json({ limit: '10mb' }));
 // Paths to storage files
 const CONFIG_FILE = path.join(__dirname, 'config.json');
 const VOCAB_FILE = path.join(__dirname, 'vocabulary.json');
+const MATH_FILE = path.join(__dirname, 'math-questions.json');
 
 // Default initial config
 const DEFAULT_CONFIG = {
@@ -54,6 +55,63 @@ const saveConfig = (cfg) => fs.writeFileSync(CONFIG_FILE, JSON.stringify(cfg, nu
 
 const loadVocab = () => JSON.parse(fs.readFileSync(VOCAB_FILE, 'utf-8'));
 const saveVocab = (v) => fs.writeFileSync(VOCAB_FILE, JSON.stringify(v, null, 2), 'utf-8');
+
+const defaultMathQuestions = () => ({
+  addition: [
+    { id: 'add-1', question: '2 + 1 = ?', choices: [3, 2, 4], answer: 3 },
+    { id: 'add-2', question: '4 + 2 = ?', choices: [6, 5, 7], answer: 6 },
+    { id: 'add-3', question: '3 + 3 = ?', choices: [6, 7, 5], answer: 6 },
+    { id: 'add-4', question: '5 + 1 = ?', choices: [6, 8, 4], answer: 6 },
+    { id: 'add-5', question: '2 + 4 = ?', choices: [5, 6, 7], answer: 6 }
+  ],
+  subtraction: [
+    { id: 'sub-1', question: '5 - 2 = ?', choices: [3, 4, 2], answer: 3 },
+    { id: 'sub-2', question: '6 - 1 = ?', choices: [4, 5, 6], answer: 5 },
+    { id: 'sub-3', question: '7 - 3 = ?', choices: [5, 4, 3], answer: 4 },
+    { id: 'sub-4', question: '8 - 2 = ?', choices: [6, 5, 7], answer: 6 },
+    { id: 'sub-5', question: '9 - 4 = ?', choices: [6, 5, 4], answer: 5 }
+  ]
+});
+
+if (!fs.existsSync(MATH_FILE)) {
+  fs.writeFileSync(MATH_FILE, JSON.stringify(defaultMathQuestions(), null, 2), 'utf-8');
+}
+
+const loadMath = () => JSON.parse(fs.readFileSync(MATH_FILE, 'utf-8'));
+const saveMath = (m) => fs.writeFileSync(MATH_FILE, JSON.stringify(m, null, 2), 'utf-8');
+
+const normalizeMode = (mode) => {
+  const m = String(mode || '').trim().toLowerCase();
+  if (m === 'addition' || m === 'subtract' || m === 'subtraction') {
+    return m === 'subtract' ? 'subtraction' : m;
+  }
+  return null;
+};
+
+const normalizeQuestionPayload = (body = {}) => {
+  const mode = normalizeMode(body.mode);
+  const question = String(body.question || '').trim();
+  const answer = Number(body.answer);
+  const choices = Array.isArray(body.choices)
+    ? body.choices.map((c) => Number(c)).filter((n) => Number.isFinite(n))
+    : [];
+
+  if (!mode) return { error: 'mode must be addition or subtraction' };
+  if (!question) return { error: 'question is required' };
+  if (!Number.isInteger(answer)) return { error: 'answer must be an integer' };
+  if (choices.length !== 3) return { error: 'choices must contain exactly 3 numbers' };
+  if (!choices.includes(answer)) return { error: 'choices must include the correct answer' };
+
+  return {
+    mode,
+    item: {
+      id: body.id ? String(body.id).trim() : `${mode}-${Date.now()}`,
+      question,
+      answer,
+      choices
+    }
+  };
+};
 
 // --- REST Endpoints ---
 
@@ -146,6 +204,60 @@ app.delete('/api/vocabulary/:word', (req, res) => {
     res.json({ message: `Successfully deleted "${target}"!`, total: items.length });
   } catch (err) {
     res.status(500).json({ error: 'Failed to delete vocabulary item' });
+  }
+});
+
+// Get math questions (all modes or a single mode)
+app.get('/api/math', (req, res) => {
+  try {
+    const mode = normalizeMode(req.query.mode);
+    const db = loadMath();
+    if (mode) return res.json(db[mode] || []);
+    return res.json(db);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch math questions' });
+  }
+});
+
+// Add a math question with exactly 3 choices
+app.post('/api/math', (req, res) => {
+  try {
+    const parsed = normalizeQuestionPayload(req.body);
+    if (parsed.error) return res.status(400).json({ error: parsed.error });
+
+    const db = loadMath();
+    if (!Array.isArray(db[parsed.mode])) db[parsed.mode] = [];
+
+    const exists = db[parsed.mode].some((q) => q.id === parsed.item.id || q.question === parsed.item.question);
+    if (exists) {
+      return res.status(400).json({ error: 'A question with the same id or text already exists' });
+    }
+
+    db[parsed.mode].push(parsed.item);
+    saveMath(db);
+    res.status(201).json({ message: 'Math question added', item: parsed.item, total: db[parsed.mode].length });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to add math question' });
+  }
+});
+
+// Delete a math question by id
+app.delete('/api/math/:mode/:id', (req, res) => {
+  try {
+    const mode = normalizeMode(req.params.mode);
+    const id = String(req.params.id || '').trim();
+    if (!mode || !id) return res.status(400).json({ error: 'mode and id are required' });
+
+    const db = loadMath();
+    const list = Array.isArray(db[mode]) ? db[mode] : [];
+    const next = list.filter((q) => q.id !== id);
+    if (next.length === list.length) return res.status(404).json({ error: 'Question not found' });
+
+    db[mode] = next;
+    saveMath(db);
+    res.json({ message: 'Math question deleted', total: next.length });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to delete math question' });
   }
 });
 

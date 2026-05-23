@@ -1,0 +1,106 @@
+{
+  "addition": [
+    {
+      "id": "add-1",
+      "question": "2 + 1 = ?",
+      "choices": [
+        3,
+        2,
+        4
+      ],
+      "answer": 3
+    },
+    {
+      "id": "add-2",
+      "question": "4 + 2 = ?",
+      "choices": [
+        6,
+        5,
+        7
+      ],
+      "answer": 6
+    },
+    {
+      "id": "add-3",
+      "question": "3 + 3 = ?",
+      "choices": [
+        6,
+        7,
+        5
+      ],
+      "answer": 6
+    },
+    {
+      "id": "add-4",
+      "question": "5 + 1 = ?",
+      "choices": [
+        6,
+        8,
+        4
+      ],
+      "answer": 6
+    },
+    {
+      "id": "add-5",
+      "question": "2 + 4 = ?",
+      "choices": [
+        5,
+        6,
+        7
+      ],
+      "answer": 6
+    }
+  ],
+  "subtraction": [
+    {
+      "id": "sub-1",
+      "question": "5 - 2 = ?",
+      "choices": [
+        3,
+        4,
+        2
+      ],
+      "answer": 3
+    },
+    {
+      "id": "sub-2",
+      "question": "6 - 1 = ?",
+      "choices": [
+        4,
+        5,
+        6
+      ],
+      "answer": 5
+    },
+    {
+      "id": "sub-3",
+      "question": "7 - 3 = ?",
+      "choices": [
+        5,
+        4,
+        3
+      ],
+      "answer": 4
+    },
+    {
+      "id": "sub-4",
+      "question": "8 - 2 = ?",
+      "choices": [
+        6,
+        5,
+        7
+      ],
+      "answer": 6
+    },
+    {
+      "id": "sub-5",
+      "question": "9 - 4 = ?",
+      "choices": [
+        6,
+        5,
+        4
+      ],
+      "answer": 5
+    }
+  ]
+}

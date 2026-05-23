@@ -44,6 +44,12 @@ The TV launcher tile is labelled **YT** (`com.thegate.tv`). On launch it
 loads the gate; on success it plays `YOUTUBE_URL`; on timeout it pauses
 the video and overlays the gate again.
 
+## Sample Layouts
+
+- `app/` is the current V1 working app layout used by the project.
+- `sample-v1/` is a GitHub-friendly split sample with separate `frontend/` and `backend/` folders.
+- `app-v2/` contains the newer V2 sample saved separately for testing.
+
 ## Documentation
 
 | Doc                                                | What it covers                                                              |
