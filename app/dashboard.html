@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parent Control Dashboard 🔒</title>
+  <style>
+    :root {
+      --pink: #FF6B9D;
+      --sky: #5DADE2;
+      --green: #58D68D;
+      --purple: #BB8FCE;
+      --dark: #2C3E50;
+      --light: #F4F6F7;
+      --shadow: 0 4px 15px rgba(0,0,0,0.08);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, #F5F7FA 0%, #E4E8F0 100%);
+      color: var(--dark);
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    header h1 {
+      font-size: 36px;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    header p {
+      color: #7F8C8D;
+      font-size: 18px;
+    }
+    /* Simple Toast Notification */
+    #toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--dark);
+      color: white;
+      padding: 16px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+      z-index: 100;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.30s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    #toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    /* Cards */
+    .card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .card-title {
+      font-size: 22px;
+      font-weight: 750;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px solid var(--light);
+      padding-bottom: 12px;
+    }
+    /* Form grids */
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group--wide {
+      grid-column: 1 / -1;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 650;
+      font-size: 15px;
+      color: #34495E;
+    }
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid #E2E8F0;
+      border-radius: 12px;
+      font-size: 16px;
+      color: var(--dark);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    select:focus {
+      border-color: var(--sky);
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--sky);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      box-shadow: 0 4px 6px rgba(93, 173, 226, 0.15);
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(93, 173, 226, 0.25);
+    }
+    .btn--submit { background: var(--pink); box-shadow: 0 4px 6px rgba(255, 107, 157, 0.15); }
+    .btn--submit:hover { box-shadow: 0 6px 12px rgba(255, 107, 157, 0.25); }
+    .btn--delete { background: #E74C3C; padding: 8px 14px; font-size: 14px; border-radius: 8px;}
+    .btn--delete:hover { background: #C0392B; }
+
+    /* Vocabulary list */
+    .vocab-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 16px;
+      max-height: 400px;
+      overflow-y: auto;
+      padding: 8px;
+      background: var(--light);
+      border-radius: 12px;
+    }
+    .vocab-item {
+      background: white;
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+      position: relative;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .vocab-item__emoji {
+      font-size: 36px;
+    }
+    .vocab-item__word {
+      font-weight: 700;
+      font-size: 15px;
+      text-transform: capitalize;
+    }
+    .vocab-item__cat {
+      font-size: 11px;
+      padding: 2px 8px;
+      background: #EAEDED;
+      border-radius: 20px;
+      color: #7F8C8D;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .vocab-item__actions {
+      margin-top: 4px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>English Adventure 🔒</h1>
+      <p>Parent & Teacher Control Dashboard</p>
+    </header>
+
+    <!-- Configure limits -->
+    <div class="card">
+      <div class="card-title">⏳ Manage YouTube Play limits</div>
+      <form id="form-config">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="youtube-limit">Play Duration (Minutes)</label>
+            <input type="number" id="youtube-limit" min="1" max="120" value="10" required>
+          </div>
+          <div class="form-group">
+            <label for="vocab-rounds">Required Questions to Unlock</label>
+            <input type="number" id="vocab-rounds" min="1" max="20" value="3" required>
+          </div>
+          <div class="form-group">
+            <label for="vocab-retries">Wrong Attempts Limit per Card</label>
+            <input type="number" id="vocab-retries" min="1" max="5" value="2" required>
+          </div>
+          <div class="form-group form-group--wide">
+            <label for="youtube-url">YouTube URL</label>
+            <input type="text" id="youtube-url" value="https://www.youtube.com/tv" placeholder="https://www.youtube.com/tv" required>
+          </div>
+        </div>
+        <button type="submit" class="btn btn--submit">Save Limits</button>
+      </form>
+    </div>
+
+    <!-- Create Card -->
+    <div class="card">
+      <div class="card-title">✨ Add New Vocabulary Flash Card</div>
+      <form id="form-add-vocab">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="new-word">English Word</label>
+            <input type="text" id="new-word" placeholder="e.g. koala" required>
+          </div>
+          <div class="form-group">
+            <label for="new-emoji">Emoji (Art / Picture)</label>
+            <input type="text" id="new-emoji" placeholder="e.g. 🐨" required>
+          </div>
+          <div class="form-group">
+            <label for="new-category">Category</label>
+            <select id="new-category">
+              <option value="animal">Animal 🐯</option>
+              <option value="fruit">Fruit 🍎</option>
+              <option value="vegetable">Vegetable 🥕</option>
+              <option value="color">Color 🔴</option>
+              <option value="number">Number 🔟</option>
+              <option value="shape">Shape ⭐</option>
+              <option value="body">Body parts 👁️</option>
+              <option value="family">Family 👶</option>
+              <option value="food">Food 🍞</option>
+              <option value="vehicle">Vehicles 🚗</option>
+              <option value="clothes">Clothes 👕</option>
+              <option value="nature">Nature / Weather 🌧️</option>
+              <option value="object">Toys / Household 🎈</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn">Add Word</button>
+      </form>
+    </div>
+
+    <!-- View active items -->
+    <div class="card">
+      <div class="card-title">📚 Active Flash Cards</div>
+      <div class="vocab-list" id="vocab-wrapper">
+        <!-- Dynically loaded items go here -->
+      </div>
+    </div>
+  </div>
+
+  <div id="toast">Settings updated!</div>
+
+  <script>
+    const API_BASE = (() => {
+      const lanApiBase = 'http://192.0.2.10:5501/api';
+      const isLocalPreview = ['localhost', '127.0.0.1', ''].includes(window.location.hostname)
+        && window.location.port !== '5501';
+
+      if (window.location.protocol === 'file:' || isLocalPreview) return lanApiBase;
+      return `${window.location.origin}/api`;
+    })();
+
+    // UI Toast feedback helper
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
+    // Load active system parameters
+    async function loadConfig() {
+      try {
+        const res = await fetch(`${API_BASE}/config`);
+        const data = await res.json();
+        
+        // Convert milliseconds to display minutes
+        document.getElementById('youtube-limit').value = data.YOUTUBE_PLAY_LIMIT_MS / 1000 / 60;
+        document.getElementById('vocab-rounds').value = data.TOTAL_ROUNDS;
+        document.getElementById('vocab-retries').value = data.MAX_RETRIES;
+        if (data.YOUTUBE_URL) {
+          document.getElementById('youtube-url').value = data.YOUTUBE_URL;
+        }
+      } catch (e) {
+        console.error('Error fetching config data:', e);
+      }
+    }
+
+    // Save limits
+    document.getElementById('form-config').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const mins = Number(document.getElementById('youtube-limit').value);
+      const rounds = Number(document.getElementById('vocab-rounds').value);
+      const retries = Number(document.getElementById('vocab-retries').value);
+      const youtubeUrl = document.getElementById('youtube-url').value;
+
+      try {
+        const res = await fetch(`${API_BASE}/config`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            YOUTUBE_PLAY_LIMIT_MS: mins * 60 * 1000,
+            TOTAL_ROUNDS: rounds,
+            MAX_RETRIES: retries,
+            YOUTUBE_URL: youtubeUrl
+          })
+        });
+        if (res.ok) {
+          showToast('🤖 Play limits saved successfully!');
+        } else {
+          showToast('❌ Failed to update rules.');
+        }
+      } catch (err) {
+        showToast('❌ Connection error to dashboard backend.');
+      }
+    });
+
+    // Load Vocabularies
+    async function loadVocabularies() {
+      try {
+        const res = await fetch(`${API_BASE}/vocabulary`);
+        const items = await res.json();
+        const wrapper = document.getElementById('vocab-wrapper');
+        wrapper.innerHTML = '';
+        
+        items.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'vocab-item';
+          div.innerHTML = `
+            <div class="vocab-item__emoji">${item.emoji}</div>
+            <div class="vocab-item__word">${item.word}</div>
+            <div class="vocab-item__cat">${item.category}</div>
+            <div class="vocab-item__actions">
+              <button class="btn btn--delete" onclick="deleteWord('${item.word}')">Remove</button>
+            </div>
+          `;
+          wrapper.appendChild(div);
+        });
+      } catch (err) {
+        console.error('Failed to load libraries: ', err);
+      }
+    }
+
+    // Add vocabulary word
+    document.getElementById('form-add-vocab').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const word = document.getElementById('new-word').value;
+      const emoji = document.getElementById('new-emoji').value;
+      const category = document.getElementById('new-category').value;
+
+      try {
+        const res = await fetch(`${API_BASE}/vocabulary`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ word, emoji, category })
+        });
+        
+        const data = await res.json();
+        if (res.ok) {
+          showToast(`🌟 Added "${word}" with ${emoji}!`);
+          document.getElementById('new-word').value = '';
+          document.getElementById('new-emoji').value = '';
+          loadVocabularies();
+        } else {
+          showToast(`❌ Error: ${data.error || 'Server error'}`);
+        }
+      } catch (err) {
+        showToast('❌ Backend server connection offline.');
+      }
+    });
+
+    // Delete item handler
+    async function deleteWord(word) {
+      if (!confirm(`Are you sure you want to remove "${word}"?`)) return;
+      try {
+        const res = await fetch(`${API_BASE}/vocabulary/${encodeURIComponent(word)}`, {
+          method: 'DELETE'
+        });
+        if (res.ok) {
+          showToast(`🗑️ Removed "${word}"`);
+          loadVocabularies();
+        } else {
+          showToast('❌ Failed to remove card.');
+        }
+      } catch (err) {
+        showToast('❌ Backend connection lost.');
+      }
+    }
+
+    // Init
+    loadConfig();
+    loadVocabularies();
+  </script>
+</body>
+</html>

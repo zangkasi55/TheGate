@@ -1,0 +1,31 @@
+# Build outputs
+android/.gradle/
+android/build/
+android/app/build/
+android/tools/
+android/local.properties
+android/**/*.apk
+android/**/*.aab
+
+# Node
+app/node_modules/
+app/npm-debug.log*
+app/yarn-error.log*
+app/pnpm-debug.log*
+
+# Runtime state (re-created on first run)
+app/config.json
+app/vocabulary.json
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.log

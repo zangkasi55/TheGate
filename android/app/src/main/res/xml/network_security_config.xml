@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Cleartext HTTP is permitted because The Gate web app is intended to run on
+  a private LAN host (e.g. a Synology NAS, Raspberry Pi, or workstation).
+  For production / WAN deployment, serve the app over HTTPS and remove the
+  base-config exception below.
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>
