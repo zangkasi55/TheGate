@@ -22,6 +22,10 @@ the experience can take over a Smart TV the way YouTube itself does.
 
 ![Architecture](docs/diagrams/overview.svg)
 
+<img width="920" height="571" alt="image" src="https://github.com/user-attachments/assets/ba10d851-295f-4c68-91cc-85e3f4623a05" />
+
+<img width="1416" height="790" alt="image" src="https://github.com/user-attachments/assets/1ad9e389-3ef0-40b9-ae73-cbd32a5d7739" />
+
 ## Quick start
 
 ```powershell
